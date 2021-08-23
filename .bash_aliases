@@ -1,1 +1,1 @@
-alias 'open=xdg-open'
+/home/pi/.bash_aliases
