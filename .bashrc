@@ -80,9 +80,6 @@ esac
 #alias la='ls -A'
 #alias l='ls -CF'
 
-
-
-# Load non OS specific aliases
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -100,8 +97,21 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # alias pbcopy='xdc-copi'
+    alias open='xdg-open'
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    #
+    alias
+elif [[ "$OSTYPE" == "cygwin" ]]; then
+    # add windows specific aliases
+    alias
+else
+    echo "Unknown OS"
+fi
+
 function mkdircd() {
-    mkdir -p "$@" && cd "$_"
+    mkdir -p "$@" && cd "$_" || return
 }
 
 function split() {
