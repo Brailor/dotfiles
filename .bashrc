@@ -81,15 +81,6 @@ esac
 #alias l='ls -CF'
 
 
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    . ~/linux/.bash_aliases
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    . ~/macos/.bash_aliases
-elif [[ "$OSTYPE" == "cygwin" ]]; then
-    . ~/windows/.bash_aliases
-else
-    echo "Unknown OS"
-fi
 
 # Load non OS specific aliases
 if [ -f ~/.bash_aliases ]; then
