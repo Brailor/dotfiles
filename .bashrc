@@ -84,6 +84,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+alias lynx='docker run -it --rm lynx ' 
+alias ?='google'
+alias ??='duck'
+alias ???='bing'
+alias vi='vim'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -134,8 +139,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=~/scripts:$PATH
-
+export PATH=~/scripts:$HOME/repos/github.com/other/lynx/bin:$PATH
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
