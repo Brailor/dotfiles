@@ -1,8 +1,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 syntax enable
-set background=dark
-colorscheme solarized
+set backspace=indent,eol,start  " more powerful backspacing
+" set background=dark
+" colorscheme solarized
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -12,6 +13,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
 " Plugin 'altercation/vim-colors-solarized'
 Plugin 'valloric/youcompleteme'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -23,6 +25,10 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
+Plugin 'dense-analysis/ale'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -39,6 +45,12 @@ Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+" key mappings example
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gl <Plug>(coc-openlink)g
+" " there's way more, see `:help coc-key-mappings@en'
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -53,3 +65,11 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " Start NERDTree and leave the cursor in it.
 autocmd VimEnter * NERDTree | wincmd p
+:set number
+let g:ale_fixers = {
+	 \ 'javascript': ['eslint']
+ \ }
+
+" let g:ale_sign_error = '❌'
+" let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1

@@ -114,6 +114,9 @@ elif [[ "$OSTYPE" == "cygwin" ]]; then
 else
     echo "Unknown OS"
 fi
+if [ -f ~/.git-completion.bash ]; then
+	  . ~/.git-completion.bash
+fi
 
 function mkdircd() {
     mkdir -p "$@" && cd "$_" || return
