@@ -4,8 +4,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -30,61 +30,39 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+PROMPT_AT=@
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
+#TODO: clean up this func a bit
+#play with colors more
+__ps1() {
+	local P='$' dir="${PWD##*/}" B \
+		r='\[\e[31m\]' g='\[\e[36m\]' h='\[\e[34m\]' \
+		u='\[\e[33m\]' p='\[\e[34m\]' w='\[\e[97m\]' \
+		b='\[\e[36m\]' x='\[\e[0m\]'
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
+	[[ $EUID == 0 ]] && P='#' && u=$r && p=$u # root
+	[[ $PWD = / ]] && dir=/
+	[[ $PWD = "$HOME" ]] && dir='~'
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
+	B=$(git branch --show-current 2>/dev/null)
+	[[ $dir = "$B" ]] && B=.
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \$\[\033[00m\] '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+	[[ $B = master || $B = main ]] && b="$r"
+	[[ -n "$B" ]] && B="$g($b$B$g)"
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+	PS1="$u\u$g$PROMPT_AT$h\h$g:$w$dir$B\n$p$P$x "
+}
+
+PROMPT_COMMAND="__ps1"
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
-
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+	. ~/.bash_aliases
 fi
 
-alias lynx='docker run -it --rm lynx ' 
+alias lynx='docker run -it --rm lynx '
 alias ?='google'
 alias ??='duck'
 alias ???='bing'
@@ -92,58 +70,77 @@ alias vi='vim'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls -1 --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls -1 --color=auto'
+	#alias dir='dir --color=auto'
+	#alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # alias pbcopy='xdc-copi'
-    alias open='xdg-open'
+	# alias pbcopy='xdc-copi'
+	alias open='xdg-open'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    #
-    alias
+	#
+	alias
 elif [[ "$OSTYPE" == "cygwin" ]]; then
-    # add windows specific aliases
-    alias
+	# add windows specific aliases
+	alias
 else
-    echo "Unknown OS"
+	echo "Unknown OS"
 fi
 if [ -f ~/.git-completion.bash ]; then
-	  . ~/.git-completion.bash
+	. ~/.git-completion.bash
 fi
 
 function mkdircd() {
-    mkdir -p "$@" && cd "$_" || return
+	mkdir -p "$@" && cd "$_" || return
 }
 
 function split() {
-    IFS=$'\n' read -d "" -ra arr <<< "${1//$2/$'\n'}"
-    printf '%s\n' "${arr[@]}"
+	IFS=$'\n' read -d "" -ra arr <<<"${1//$2/$'\n'}"
+	printf '%s\n' "${arr[@]}"
 }
 
 function open-ports() {
-    lsof -i -P -n | grep LISTEN
+	lsof -i -P -n | grep LISTEN
 }
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
 fi
+# if type brew &>/dev/null
+# then
+#   HOMEBREW_PREFIX="$(brew --prefix)"
+#   if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+#   then
+#      source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+#   else
+#      for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+#      do
+#       [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+#      done
+#   fi
+# fi
 
 export PATH=~/scripts:$HOME/repos/github.com/other/lynx/bin:$HOME/bin:$HOME/node_modules/.bin/:$PATH
 
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/viktor.ohad/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc'; fi
