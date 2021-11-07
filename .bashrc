@@ -10,7 +10,7 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more optisons
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:ignoredups:erasedups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -22,13 +22,6 @@ HISTFILESIZE=2000
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
-# make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 PROMPT_AT=@
 
@@ -53,7 +46,7 @@ __ps1() {
 	PS1="$u\u$g$PROMPT_AT$h\h$g:$w$dir$B\n$p$P$x "
 }
 
-PROMPT_COMMAND="__ps1"
+PROMPT_COMMAND="${PROMPT_AT:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r; __ps1"
 
 cd(){
   builtin cd "$@" ; ls ;
@@ -65,12 +58,13 @@ cd(){
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
-
-alias lynx='docker run -it --rm lynx '
+#--------------------- aliases-------------------------------------
+alias lynx='docker run -it --rm lynx' 
 alias ?='google'
 alias ??='duck'
 alias ???='bing'
 alias vi='vim'
+alias v='vi'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -136,8 +130,9 @@ fi
 #      done
 #   fi
 # fi
-
-export PATH=~/scripts:$HOME/repos/github.com/other/lynx/bin:$HOME/bin:$HOME/node_modules/.bin/:$PATH
+export GHPATH="${HOME}/repos/github.com/brailor"
+export CDPATH=".:$GHPATH:$HOME"
+export PATH=~/scripts:$HOME/repos/github.com/other/lynx/bin:$HOME/go/bin:$HOME/bin:$HOME/node_modules/.bin/:$PATH
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
