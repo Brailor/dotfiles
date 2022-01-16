@@ -2,13 +2,16 @@
 
 set -e
 
+repo_path="$HOME/repos/github.com/brailor/zet"
 filename=$(date "+%Y%m%d%H%M%S")
 
 #shellcheck disable=SC2120
 zet() {
     header="#${filename} ${1:-"Default title"}"
 
-     echo "$header" > "$filename.md"
-     code "$filename.md"
+    echo "$header" >"$repo_path/$filename.md"
+
+    vi "$repo_path/$filename.md"
 }
 
+zet "$@"

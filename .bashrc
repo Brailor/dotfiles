@@ -46,7 +46,7 @@ __ps1() {
 	PS1="$u\u$g$PROMPT_AT$h\h$g:$w$dir$B\n$p$P$x "
 }
 
-PROMPT_COMMAND="${PROMPT_AT:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r; __ps1"
+PROMPT_COMMAND="${PROMPT_AT:+$PROMPT_COMMAND$'\n'} __ps1"
 
 cd(){
   builtin cd "$@" ; ls ;
@@ -143,3 +143,5 @@ if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/path.bash.inc' ]; then . 
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+export DENO_INSTALL="/Users/viktor.ohad/.deno"
+export PATH="$DENO_INSTALL/bin:/path/to/elixir/bin:$PATH"
