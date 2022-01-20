@@ -1,0 +1,7 @@
+{
+"scripts": {
+	"bootstrap": "some command",
+	"clean": "some other command"
+}
+
+}

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+_yarn(){
+	cur="${COMP_WORDS[COMP_CWORD]}"
+commands="add audit autoclean bin cache check config create dedupe generate-lock-entry global help impor info init install licenses link list logfile login logout outdated owner pack policies prune publish remove run self-update tag team test unlink upgrade upgrade-interactive version versions why workspace workspaces"
+	if [[ -e "$(pwd)/package.json" ]]; then
+		pkg_json_scripts="$(jq '.scripts | keys | join(" ")' < package.json | tr -d '"')" 
+		local all_commands="$pkg_json_scripts $commands"
+		COMPREPLY=($(compgen -W "$all_commands" "$cur"))
+		return 0
+	fi
+
+	COMPREPLY=($(compgen -W "$commands" "$cur"))
+}
+
+complete -F _yarn yarn

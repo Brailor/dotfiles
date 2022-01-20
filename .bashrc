@@ -94,16 +94,16 @@ if [ -f ~/.git-completion.bash ]; then
 	. ~/.git-completion.bash
 fi
 
-function mkdircd() {
+mkdircd() {
 	mkdir -p "$@" && cd "$_" || return
 }
 
-function split() {
+split() {
 	IFS=$'\n' read -d "" -ra arr <<<"${1//$2/$'\n'}"
 	printf '%s\n' "${arr[@]}"
 }
 
-function open-ports() {
+open-ports() {
 	lsof -i -P -n | grep LISTEN
 }
 
@@ -130,6 +130,9 @@ fi
 #      done
 #   fi
 # fi
+
+
+
 export GHPATH="${HOME}/repos/github.com/brailor"
 export CDPATH=".:$GHPATH:$HOME"
 export PATH=~/scripts:$HOME/repos/github.com/other/lynx/bin:$HOME/go/bin:$HOME/bin:$HOME/node_modules/.bin/:$PATH
@@ -145,3 +148,8 @@ if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/path.bash.inc' ]; then . 
 if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc'; fi
 export DENO_INSTALL="/Users/viktor.ohad/.deno"
 export PATH="$DENO_INSTALL/bin:/path/to/elixir/bin:$PATH"
+
+# >>>> Vagrant command completion (start)
+. /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
+# <<<<  Vagrant command completion (end)
+. "$HOME/scripts/yarn-autocomplete" 
