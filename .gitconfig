@@ -4,13 +4,14 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [user]
-	name = Viktor Ohad
-	email = viktor.ohad@instructure.com
+	name = Viktor Ohád
+	email = viktor.ohad@protonmail.com
 [alias]
 	co = checkout
 	sw = switch
 	st = status
 	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+	brm = br --list 'INSTUI-*/*'
 	
 [pull]
 	rebase = true
@@ -25,3 +26,5 @@
 
 [interactive]
     diffFilter = delta --color-only
+[commit]
+	gpgSign = true

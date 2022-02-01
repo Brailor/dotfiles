@@ -65,6 +65,7 @@ alias ??='duck'
 alias ???='bing'
 alias vi='vim'
 alias v='vi'
+#alias elixir='docker run -it --rm elixir'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
