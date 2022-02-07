@@ -65,6 +65,11 @@ alias ??='duck'
 alias ???='bing'
 alias vi='vim'
 alias v='vi'
+alias got='go test'
+alias gor='go run'
+alias gob='go build'
+alias ga='git add'
+alias commit='git commit'
 #alias elixir='docker run -it --rm elixir'
 
 # enable color support of ls and also add handy aliases
