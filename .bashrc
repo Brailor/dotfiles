@@ -59,12 +59,12 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 #--------------------- aliases-------------------------------------
-alias lynx='docker run -it --rm lynx' 
+alias lynx='docker run -it --rm lynx'
 alias ?='google'
 alias ??='duck'
 alias ???='bing'
 alias vi='vim'
-alias v='vi'
+alias v='v.sh'
 alias got='go test'
 alias gor='go run'
 alias gob='go build'
@@ -159,4 +159,11 @@ export PATH="$DENO_INSTALL/bin:/path/to/elixir/bin:$PATH"
 # >>>> Vagrant command completion (start)
 . /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
 # <<<<  Vagrant command completion (end)
-. "$HOME/scripts/yarn-autocomplete" 
+#. "$HOME/scripts/yarn-autocomplete"
+
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/bash/__tabtab.bash ] && . ~/.config/tabtab/bash/__tabtab.bash || true
+. "$HOME/.cargo/env"
+
+# source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
