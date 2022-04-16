@@ -36,6 +36,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
 Plug 'dracula/vim', {'as':'dracula'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 

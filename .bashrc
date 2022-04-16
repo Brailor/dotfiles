@@ -166,4 +166,4 @@ export PATH="$DENO_INSTALL/bin:/path/to/elixir/bin:$PATH"
 [ -f ~/.config/tabtab/bash/__tabtab.bash ] && . ~/.config/tabtab/bash/__tabtab.bash || true
 . "$HOME/.cargo/env"
 
-# source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
