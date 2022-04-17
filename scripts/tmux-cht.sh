@@ -4,7 +4,7 @@
 # curl cht.sh/{core-util}-{operation}
 
 languages="go nodejs typescript javascript python bash"
-core_utils="awk sed grep cut tr"
+core_utils="awk sed grep cut tr ln"
 all="$languages $core_utils"
 
 selected="$(echo -e "${all// /\\n}" | fzf)"

@@ -12,8 +12,8 @@ if [[ "$#" == 0 ]]; then
 	fi
 	# TODO; investigate how to do this:
 	#cd "$(dirname "$path_to_file")" || echo "cd failed to $(dirname path_to_file)" && exit
-	vim "$path_to_file"
+	nvim "$path_to_file"
 else
-	vim "$@"
+	nvim "$@"
 fi
 
