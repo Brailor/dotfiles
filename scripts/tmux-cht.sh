@@ -3,8 +3,8 @@
 # curl cht.sh/{lang}/query
 # curl cht.sh/{core-util}-{operation}
 
-languages="go nodejs typescript javascript python bash"
-core_utils="awk sed grep cut tr ln"
+languages="$(cat ~/const/tmux-cht.sh-languages)"
+core_utils="$(cat ~/const/tmux-cht.sh-utils)"
 all="$languages $core_utils"
 
 selected="$(echo -e "${all// /\\n}" | fzf)"

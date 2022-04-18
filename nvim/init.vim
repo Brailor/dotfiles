@@ -13,11 +13,14 @@ set backspace=indent,eol,start  " more powerful backspacing
 set background=dark
 set signcolumn=yes
 set termguicolors
+
 " set Vim-specific sequences for RGB colors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 filetype off                  " required
+filetype plugin indent on    " required
+
 syntax enable
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -35,7 +38,6 @@ Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
-Plug 'dense-analysis/ale'
 Plug 'dracula/vim', {'as':'dracula'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -70,16 +72,6 @@ set completeopt=menu,menuone,noselect
 " require'lspconfig'.tsserver.setup{}
 " EOF
 
-let mapleader = " "
-" " there's way more, see `:help coc-key-mappings@en'
-filetype plugin indent on    " required
-let g:ale_fixers = {
-	 \ 'javascript': ['eslint']
- \ }
-
-" let g:ale_sign_error = '❌'
-" let g:ale_sign_warning = '⚠️'
-let g:ale_fix_on_save = 1
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -91,4 +83,5 @@ augroup BRAILOR
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()
 augroup END
+
 colorscheme dracula
