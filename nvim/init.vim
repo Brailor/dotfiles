@@ -28,38 +28,51 @@ endif
 
 call plug#begin()
 
-Plug 'nvim-lua/plenary.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-telescope/telescope.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-fugitive'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plug 'git://git.wincent.com/command-t.git'
 Plug 'tpope/vim-surround'
-Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
 Plug 'dracula/vim', {'as':'dracula'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" auto completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
+" telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+" git related
+Plug 'ThePrimeagen/git-worktree.nvim'
+Plug 'git://git.wincent.com/command-t.git'
+Plug 'airblade/vim-gitgutter'
+
 call plug#end()
 
 :lua require('lsp-conf')
-" :lua require('plugin-conf')
+:lua require('plugin-conf')
 
+set completeopt=menu,menuone,noselect
+
+" This is how to write lua code in vimscript
 " lua << EOF
 " require'lspconfig'.tsserver.setup{}
 " EOF
 
 let mapleader = " "
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " " there's way more, see `:help coc-key-mappings@en'
 filetype plugin indent on    " required
-:set number
 let g:ale_fixers = {
 	 \ 'javascript': ['eslint']
  \ }
