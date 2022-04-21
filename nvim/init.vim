@@ -32,9 +32,7 @@ endif
 call plug#begin()
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-fugitive'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
@@ -57,8 +55,11 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " git related
 Plug 'ThePrimeagen/git-worktree.nvim'
-Plug 'git://git.wincent.com/command-t.git'
 Plug 'airblade/vim-gitgutter'
+
+" other plugins
+Plug 'ThePrimeagen/harpoon'
+Plug 'dewyze/vim-tada'
 
 call plug#end()
 
