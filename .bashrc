@@ -142,6 +142,7 @@ fi
 
 export GHPATH="${HOME}/repos/github.com/brailor"
 export CDPATH=".:$GHPATH:$HOME"
+export GOPATH="$HOME/go"
 export PATH=~/scripts:$HOME/repos/github.com/other/lynx/bin:$HOME/go/bin:$HOME/bin:$HOME/node_modules/.bin/:$PATH
 
 export NVM_DIR="$HOME/.config/nvm"
@@ -167,3 +168,9 @@ export PATH="$DENO_INSTALL/bin:/path/to/elixir/bin:$PATH"
 . "$HOME/.cargo/env"
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+# to enable fuzzy finding for mcfly:
+# export MCFLY_FUZZY=2
+
+export MCFLY_KEY_SCHEME=vim
+eval "$(mcfly init bash)"

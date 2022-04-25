@@ -60,6 +60,7 @@ Plug 'airblade/vim-gitgutter'
 " other plugins
 Plug 'ThePrimeagen/harpoon'
 Plug 'dewyze/vim-tada'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
@@ -73,7 +74,6 @@ set completeopt=menu,menuone,noselect
 " require'lspconfig'.tsserver.setup{}
 " EOF
 
-
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
@@ -86,3 +86,4 @@ augroup BRAILOR
 augroup END
 
 colorscheme dracula
+let g:go_fmt_command = "goimports"
