@@ -13,19 +13,20 @@
 	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 	brm = br --list 'INSTUI-*/*'
 	stash-staged = "!bash -c \"git stash --keep-index; git stash push -m \"staged\" --keep-index; git stash pop stash@{1}\""
-	
+        clone-for-worktree = "!bash clone-for-worktree.sh"
+
 [pull]
 	rebase = true
 [core]
-    pager = delta
+        pager = delta
 
 [delta]
-    plus-style = "syntax #012800"
-    minus-style = "syntax #340001"
-    syntax-theme = Monokai Extended
-    navigate = true
+        plus-style = "syntax #012800"
+        minus-style = "syntax #340001"
+        syntax-theme = Monokai Extended
+        navigate = true
 
 [interactive]
-    diffFilter = delta --color-only
+        diffFilter = delta --color-only
 [commit]
 	gpgSign = true

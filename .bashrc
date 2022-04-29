@@ -144,6 +144,8 @@ export GHPATH="${HOME}/repos/github.com/brailor"
 export CDPATH=".:$GHPATH:$HOME"
 export GOPATH="$HOME/go"
 export PATH=~/scripts:$HOME/repos/github.com/other/lynx/bin:$HOME/go/bin:$HOME/bin:$HOME/node_modules/.bin/:$PATH
+export EDITOR=nvim
+export VISUAL=nvim
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
