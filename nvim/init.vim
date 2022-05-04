@@ -61,11 +61,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ThePrimeagen/harpoon'
 Plug 'dewyze/vim-tada'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'sbdchd/neoformat'
 
 call plug#end()
 
 :lua require('lsp-conf')
 :lua require('plugin-conf')
+:lua require('git-worktree-conf')
 
 set completeopt=menu,menuone,noselect
 
@@ -83,7 +85,11 @@ endfun
 augroup BRAILOR
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()
+    autocmd BufWritePre *.js Neoformat
+    autocmd BufWritePre *.ts Neoformat
+    autocmd BufWritePre *.tsx Neoformat
 augroup END
 
 colorscheme dracula
 let g:go_fmt_command = "goimports"
+let g:neoformat_try_node_exe = 1
