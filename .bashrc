@@ -143,7 +143,7 @@ fi
 export GHPATH="${HOME}/repos/github.com/brailor"
 export CDPATH=".:$GHPATH:$HOME"
 export GOPATH="$HOME/go"
-export PATH=~/scripts:$HOME/repos/github.com/other/lynx/bin:$HOME/go/bin:$HOME/bin:$HOME/node_modules/.bin/:$PATH
+export PATH=$HOME/local/bin:$HOME/scripts:$HOME/repos/github.com/other/lynx/bin:$HOME/go/bin:$HOME/bin:$HOME/node_modules/.bin/:$PATH
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -162,7 +162,6 @@ export PATH="$DENO_INSTALL/bin:/path/to/elixir/bin:$PATH"
 # >>>> Vagrant command completion (start)
 . /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
 # <<<<  Vagrant command completion (end)
-#. "$HOME/scripts/yarn-autocomplete"
 
 # tabtab source for packages
 # uninstall by removing these lines
@@ -176,3 +175,8 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 export MCFLY_KEY_SCHEME=vim
 eval "$(mcfly init bash)"
+
+# add auto completion to yarn
+complete -C yarn-auto yarn-auto
+
+alias luamake=/Users/viktor.ohad/repos/github.com/other/lua-language-server/3rd/luamake/luamake
