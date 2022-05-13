@@ -18,7 +18,7 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-filetype off                  " required
+" filetype off                  " required
 filetype plugin indent on    " required
 
 syntax enable
@@ -62,6 +62,7 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'dewyze/vim-tada'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'sbdchd/neoformat'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -88,8 +89,10 @@ augroup BRAILOR
     autocmd BufWritePre *.js Neoformat
     autocmd BufWritePre *.ts Neoformat
     autocmd BufWritePre *.tsx Neoformat
+    autocmd BufWritePre *.json Neoformat
 augroup END
 
 colorscheme dracula
 let g:go_fmt_command = "goimports"
 let g:neoformat_try_node_exe = 1
+let g:rustfmt_autosave = 1

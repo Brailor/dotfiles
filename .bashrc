@@ -157,7 +157,7 @@ if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/path.bash.inc' ]; then . 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc'; fi
 export DENO_INSTALL="/Users/viktor.ohad/.deno"
-export PATH="$DENO_INSTALL/bin:/path/to/elixir/bin:$PATH"
+export PATH="$DENO_INSTALL/bin:/path/to/elixir/bin:/nix:$PATH"
 
 # >>>> Vagrant command completion (start)
 . /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
