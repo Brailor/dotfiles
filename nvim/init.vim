@@ -10,7 +10,6 @@ set hidden
 set incsearch
 set scrolloff=12
 set backspace=indent,eol,start  " more powerful backspacing
-set background=dark
 set signcolumn=yes
 set termguicolors
 
@@ -36,7 +35,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
-Plug 'dracula/vim', {'as':'dracula'}
+" Plug 'dracula/vim', {'as':'dracula'}
+Plug 'gruvbox-community/gruvbox'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " auto completion
@@ -63,12 +63,14 @@ Plug 'dewyze/vim-tada'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'sbdchd/neoformat'
 Plug 'rust-lang/rust.vim'
+" Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 
 call plug#end()
 
 :lua require('lsp-conf')
 :lua require('plugin-conf')
 :lua require('git-worktree-conf')
+" :lua require('cmp-tabnine')
 
 set completeopt=menu,menuone,noselect
 
@@ -92,7 +94,9 @@ augroup BRAILOR
     autocmd BufWritePre *.json Neoformat
 augroup END
 
-colorscheme dracula
+" colorscheme dracula
+colorscheme gruvbox
 let g:go_fmt_command = "goimports"
 let g:neoformat_try_node_exe = 1
 let g:rustfmt_autosave = 1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1

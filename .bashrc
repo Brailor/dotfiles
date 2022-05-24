@@ -71,6 +71,7 @@ alias gob='go build'
 alias ga='git add'
 alias commit='git commit'
 alias reload='exec bash -l'
+alias pwc='pwd | pbcopy'
 #alias elixir='docker run -it --rm elixir'
 
 # enable color support of ls and also add handy aliases
@@ -112,6 +113,10 @@ split() {
 
 open-ports() {
 	lsof -i -P -n | grep LISTEN
+}
+
+gi() {
+    curl -sL "https://www.toptal.com/developers/gitignore/api/$@"
 }
 
 # enable programmable completion features (you don't need to enable
@@ -172,11 +177,14 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # to enable fuzzy finding for mcfly:
 # export MCFLY_FUZZY=2
-
 export MCFLY_KEY_SCHEME=vim
-eval "$(mcfly init bash)"
 
 # add auto completion to yarn
 complete -C yarn-auto yarn-auto
 
 alias luamake=/Users/viktor.ohad/repos/github.com/other/lua-language-server/3rd/luamake/luamake
+
+alias start-apue='VBoxManage startvm "apue" --type headless'
+
+eval "$(mcfly init bash)"
+eval "$(thefuck --alias)"

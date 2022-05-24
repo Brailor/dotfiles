@@ -7,9 +7,8 @@ set hidden
 set incsearch
 set scrolloff=12
 set backspace=indent,eol,start  " more powerful backspacing
-set background=dark
 set signcolumn=yes
-set termguicolors
+
 " set Vim-specific sequences for RGB colors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -65,9 +64,6 @@ let g:ale_fixers = {
 	 \ 'javascript': ['eslint']
  \ }
 
-" let g:ale_sign_error = '❌'
-" let g:ale_sign_warning = '⚠️'
-let g:ale_fix_on_save = 1
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -79,4 +75,9 @@ augroup BRAILOR
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()
 augroup END
-colorscheme dracula
+
+" colorscheme dracula
+
+colorscheme gruvbox
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
