@@ -72,6 +72,7 @@ alias ga='git add'
 alias commit='git commit'
 alias reload='exec bash -l'
 alias pwc='pwd | pbcopy'
+alias exa='exa -all'
 #alias elixir='docker run -it --rm elixir'
 
 # enable color support of ls and also add handy aliases
