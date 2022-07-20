@@ -49,7 +49,7 @@ __ps1() {
 PROMPT_COMMAND="${PROMPT_AT:+$PROMPT_COMMAND$'\n'} __ps1"
 
 cd(){
-  builtin cd "$@" ; ls ;
+  builtin cd "$@" ; exa -all;
 }
 
 # colored GCC warnings and errors
@@ -113,11 +113,15 @@ split() {
 }
 
 open-ports() {
-	lsof -i -P -n | grep LISTEN
+    lsof -i -P -n | grep LISTEN
 }
 
 gi() {
     curl -sL "https://www.toptal.com/developers/gitignore/api/$@"
+}
+
+cpu-temp() {
+    sudo powermetrics --samplers smc | grep -i "CPU die temperature"
 }
 
 # enable programmable completion features (you don't need to enable
@@ -163,7 +167,8 @@ if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/path.bash.inc' ]; then . 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc'; fi
 export DENO_INSTALL="/Users/viktor.ohad/.deno"
-export PATH="$DENO_INSTALL/bin:/path/to/elixir/bin:/nix:$PATH"
+export BUN_INSTALL="/Users/viktor.ohad/.bun"
+export PATH="$BUN_INSTALL/bin:$DENO_INSTALL/bin:/path/to/elixir/bin:/nix:$PATH"
 
 # >>>> Vagrant command completion (start)
 . /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh

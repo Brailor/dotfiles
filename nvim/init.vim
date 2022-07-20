@@ -17,7 +17,6 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-" filetype off                  " required
 filetype plugin indent on    " required
 
 syntax enable
@@ -63,6 +62,7 @@ Plug 'dewyze/vim-tada'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'sbdchd/neoformat'
 Plug 'rust-lang/rust.vim'
+Plug 'github/copilot.vim'
 " Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 
 call plug#end()
@@ -96,6 +96,7 @@ augroup END
 
 " colorscheme dracula
 colorscheme gruvbox
+
 let g:go_fmt_command = "goimports"
 let g:neoformat_try_node_exe = 1
 let g:rustfmt_autosave = 1
