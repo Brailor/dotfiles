@@ -2,11 +2,9 @@
 local sumneko_root_path = "/Users/viktor.ohad/repos/github.com/other/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-require('cmp_nvim_lsp').update_capabilities(capabilities)
-
 
 require'lspconfig'.sumneko_lua.setup {
   cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
@@ -33,6 +31,7 @@ require'lspconfig'.sumneko_lua.setup {
     },
   },
 }
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
@@ -43,7 +42,7 @@ vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<C
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -66,7 +65,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'tsserver', 'bashls', 'gopls', 'rust_analyzer', 'prismals' }
+local servers = { 'pyright', 'tsserver', 'bashls', 'gopls', 'rust_analyzer', 'prismals', 'clangd' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
@@ -83,6 +82,26 @@ end
 local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
+
+local rust_tools_opts = {
+    tools = { -- rust-tools options
+        autoSetHints = false,
+        hover_with_actions =false,
+        inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+        },
+    },
+
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+}
+
+-- rust-tools will setup the rust_analyzer lsp for me, so I don't need to do it myself
+-- but if I let it set it up, it will mess up my <Shift-f> hover dialog
+-- require('rust-tools').setup(rust_tools_opts)
 
 local cmp = require'cmp'
 
@@ -157,4 +176,5 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
+
 

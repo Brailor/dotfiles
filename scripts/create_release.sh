@@ -1,0 +1,1 @@
+/Users/viktor.ohad/repos/github.com/brailor/random-scripts/instructure/instui/create_release.sh

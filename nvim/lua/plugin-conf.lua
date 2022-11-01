@@ -6,6 +6,7 @@ local map = vim.api.nvim_set_keymap
 -- map the leader key
 map('n', '<Space>', '', {})
 vim.g.mapleader = ' '
+vim.g.copilot_no_tab_map = true
 
 local keymapOpts = { noremap = true, silent = true }
 -- git worktree related
@@ -25,4 +26,9 @@ map('n', '<Leader>l', "<cmd>:lua require('harpoon.ui').nav_file(3)<CR>", keymapO
 map('n', '<Leader>;', "<cmd>:lua require('harpoon.ui').nav_file(4)<CR>", keymapOpts)
 map('n', '<C-n>', "<cmd>:lua require('harpoon.ui').toggle_quick_menu()<CR>", keymapOpts)
 map('n', '<Leader>a', "<cmd>:lua require('harpoon.mark').add_file()<CR>", keymapOpts)
+
+-- copilot related
+map('i', '<C-j>', "copilot#Accept('')", { expr = true, silent = false, script = true})
+-- map('i', '<C->', "copilot-next", { expr = true, silent = false, script = true})
+
 

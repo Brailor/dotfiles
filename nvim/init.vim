@@ -37,6 +37,7 @@ Plug 'tpope/vim-commentary'
 " Plug 'dracula/vim', {'as':'dracula'}
 Plug 'gruvbox-community/gruvbox'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 " auto completion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -62,7 +63,8 @@ Plug 'dewyze/vim-tada'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'sbdchd/neoformat'
 Plug 'rust-lang/rust.vim'
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
+Plug 'simrat39/rust-tools.nvim'
 " Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 
 call plug#end()
