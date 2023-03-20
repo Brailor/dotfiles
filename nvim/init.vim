@@ -12,6 +12,7 @@ set scrolloff=12
 set backspace=indent,eol,start  " more powerful backspacing
 set signcolumn=yes
 set termguicolors
+set noswapfile
 
 " set Vim-specific sequences for RGB colors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -69,6 +70,8 @@ Plug 'simrat39/rust-tools.nvim'
 
 call plug#end()
 
+
+:lua require('tree-sitter-conf')
 :lua require('lsp-conf')
 :lua require('plugin-conf')
 :lua require('git-worktree-conf')
@@ -94,6 +97,8 @@ augroup BRAILOR
     autocmd BufWritePre *.ts Neoformat
     autocmd BufWritePre *.tsx Neoformat
     autocmd BufWritePre *.json Neoformat
+
+    autocmd BufRead,BufEnter *.astro set filetype=astro
 augroup END
 
 " colorscheme dracula

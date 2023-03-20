@@ -8,6 +8,7 @@ set incsearch
 set scrolloff=12
 set backspace=indent,eol,start  " more powerful backspacing
 set signcolumn=yes
+set spell spelllang=en_us
 
 " set Vim-specific sequences for RGB colors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
