@@ -4,7 +4,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [user]
-	name = Viktor Ohd
+	name = Viktor Ohad
 	email = viktor.ohad@proton.me
 	signingkey = 63645A4DCEA3A79F
 [alias]
