@@ -171,7 +171,7 @@ if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/path.bash.inc' ]; then . 
 if [ -f '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/viktor.ohad/Downloads/google-cloud-sdk/completion.bash.inc'; fi
 export DENO_INSTALL="/Users/viktor.ohad/.deno"
 export BUN_INSTALL="/Users/viktor.ohad/.bun"
-export PATH="$BUN_INSTALL/bin:$DENO_INSTALL/bin:/path/to/elixir/bin:/nix:$PATH"
+export PATH="$BUN_INSTALL/bin:$DENO_INSTALL/bin:/path/to/elixir/bin:/nix:/opt/homebrew/bin:$PATH"
 
 # >>>> Vagrant command completion (start)
 . /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
@@ -197,3 +197,5 @@ alias start-apue='VBoxManage startvm "apue" --type headless'
 
 eval "$(mcfly init bash)"
 eval "$(thefuck --alias)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -4,8 +4,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [user]
-	name = Viktor Ohád
-	email = viktor.ohad@protonmail.com
+	name = Viktor Ohd
+	email = viktor.ohad@proton.me
+	signingkey = 63645A4DCEA3A79F
 [alias]
 	co = checkout
 	sw = switch
@@ -30,4 +31,4 @@
 [interactive]
         diffFilter = delta --color-only
 [commit]
-	gpgSign = true
+	gpgsign = true
